@@ -157,6 +157,13 @@ class Producto {
 
 } 
 
+public function obtenerTodos() {
+    $sql = "SELECT * FROM " . $this->tabla;
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 } 
 
 ?>
