@@ -33,13 +33,13 @@ class Database {
         } catch(PDOException $e) { 
 
             echo "Error: " . $e->getMessage(); 
+            echo "Conexión fallida:";
 
         } 
 
         return $this->conn; 
+        echo "Conexión exitosa";
 
     } 
 
 } 
-
-?> 

@@ -55,7 +55,7 @@ class ReporteController
         $writer->save('php://output');
     }
 
-    public function reportePDF()
+  public function reportePDF()
     {
         $database = new Database();
         $db = $database->conectar();
@@ -63,7 +63,16 @@ class ReporteController
         $productos = $producto->obtenerTodos();
 
         ob_start();
-        include '../views/reportes/productos_pdf.php';
+        
+        // Apuntamos exactamente a la ruta que muestra tu explorador de archivos
+        $rutaVista = dirname(__DIR__) . '/views/productos/reportes/productos_pdf.php';
+
+        if (file_exists($rutaVista)) {
+            include $rutaVista;
+        } else {
+            die("Error: No se encontró la vista en: " . $rutaVista);
+        }
+
         $html = ob_get_clean();
 
         $dompdf = new Dompdf();
